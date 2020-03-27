@@ -1,0 +1,9 @@
+{
+    "sourceMap": false,
+    "plugins": [
+        "transform-object-rest-spread"
+    ],
+    "presets": [
+        "env"
+    ]
+}
