@@ -7,8 +7,9 @@
     "dev": "webpack -w",
     "build": "webpack ",
     "release": "webpack --config webpack.production.config.js",
-    "test": "mocha ./js/tests/**/*-tests.js  --require @babel/register",
-    "cover": "nyc --reporter=html npm run test"
+    "test": "mocha ./src/tests/**/*-tests.js  --require @babel/register",
+    "cover": "nyc --reporter=html npm run test",
+    "docker": "docker run -it --rm -p 80:80 -v $(pwd)/public:/usr/share/nginx/html nginx:alpine"
   },
   "engines": {
     "node": "^12.16.3"
@@ -23,12 +24,11 @@
     "assert": "^2.0.0",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.6",
+    "copy-webpack-plugin": "^6.0.1",
     "css-loader": "^2.1.0",
     "eslint": "^5.16.0",
     "eslint-plugin-react": "^7.13.0",
     "file-loader": "^3.0.1",
-    "html-webpack-plugin": "^3.2.0",
-    "html-webpack-root-plugin": "^0.10.0",
     "mini-css-extract-plugin": "^0.6.0",
     "mocha": "^7.1.2",
     "nyc": "^15.0.1",
