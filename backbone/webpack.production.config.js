@@ -1,8 +1,8 @@
 const merge = require("webpack-merge");
 const common = require("./webpack.config.js");
 const webpack = require("webpack");
-const TerserPlugin = require("terser-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = merge(common, {
@@ -21,10 +21,16 @@ module.exports = merge(common, {
             filename: "bundle.css"
         }),
         new CopyPlugin({
-            patterns: [
-                { from: "src/index.html" },
-                { from: "src/favicon.ico" }
-            ]
+            patterns:
+                [
+                    { from: "client/index.html" },
+                    { from: "client/favicon.ico" }
+                ]
+        }),
+        new webpack.ProvidePlugin({
+            "$": "jquery",
+            "jQuery": "jquery",
+            "Backbone": "backbone"
         })
     ]
 });
