@@ -1,17 +1,17 @@
 {
     "parser": "babel-eslint",
-    "parserOptions": {
-        "ecmaVersion": 6,
-        "ecmaFeatures": {
-            "impliedStrict": true
-        }
-    },
-    "extends": "eslint:recommended",
     "env": {
         "jquery": true,
         "browser": true,
         "node": true,
         "mocha": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "ecmaFeatures": {
+            "impliedStrict": true
+        }
     },
     "rules": {
         "quotes": [ "error", "double" ],

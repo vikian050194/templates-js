@@ -1,5 +1,14 @@
 {
     "parser": "babel-eslint",
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true,
+        "node": true,
+        "jquery": true,
+        "mocha": true
+    },
+    "extends": ["eslint:recommended"],
     "parserOptions": {
         "ecmaVersion": 6,
         "ecmaFeatures": {
@@ -8,27 +17,14 @@
         },
         "sourceType": "module"
     },
-    "extends": ["eslint:recommended"],
-    "env": {
-        "browser": true,
-        "commonjs": true,
-        "es6": true,
-        "node": true,
-        "jquery": true
-    },
     "rules": {
-        "indent": ["error", 4, {
-            "SwitchCase": 1
-        }],
-        "linebreak-style": ["error", "unix"],
-        "quotes": ["error", "double"],
-        "semi": ["error", "always"],
-        "no-console": ["warn", {
-            "allow": ["info", "error"]
-        }],
-        "no-multiple-empty-lines": ["error", {
-            "max": 1
-        }]
+        "quotes": [ "error", "double" ],
+        "semi": [ "error", "always" ],
+        "indent": [ "error", 4, { "SwitchCase": 1 } ],
+        "no-multiple-empty-lines": [ "error", { "max": 1 } ],
+        "linebreak-style": [ "error", "unix"],
+        "no-console": [ "warn", { "allow": [ "info", "error" ] } ],
+        "comma-dangle": ["error", "never"]
     },
     "globals": {
         "Backbone": "readonly"
