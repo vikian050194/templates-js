@@ -6,6 +6,8 @@ import List from "./components/List";
 import NewItemForm from "./components/NewItemForm";
 import EditItemForm from "./components/EditItemForm";
 
+import "./App.css";
+
 class App extends React.Component {
     render() {
         return (

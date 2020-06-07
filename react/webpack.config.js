@@ -6,7 +6,7 @@ const buildFolderName = "public";
 
 module.exports = {
     mode: "development",
-    entry: ["@babel/polyfill", "./src/js/index.jsx", "./src/css/index.css"],
+    entry: ["@babel/polyfill", "./src/index.jsx"],
     devtool: "inline-source-map",
     module: {
         rules: [
@@ -59,7 +59,7 @@ module.exports = {
         proxy: {
             "/api": {
                 target: "http://localhost:80",
-                pathRewrite: {"^/api" : ""}
+                pathRewrite: { "^/api": "" }
             }
         }
     }
