@@ -1,6 +1,6 @@
 import App from "./app";
 
-document.addEventListener("DOMContentLoaded", function() { 
+window.addEventListener("load", function() { 
     var app = new App({el: document.body});
     app.render();
     app.start();
