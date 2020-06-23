@@ -9,7 +9,10 @@
     "release": "webpack --config webpack.production.config.js",
     "test": "mocha ./src/tests/**/*-tests.js  --require @babel/register",
     "cover": "nyc --reporter=html npm run test",
-    "docker": "docker run -it --rm -p 80:80 -v $(pwd)/public:/usr/share/nginx/html nginx:alpine"
+    "docker": "docker run -it --name react_web_app_nginx --rm -p 80:80 -v $(pwd)/public:/usr/share/nginx/html nginx:latest",
+    "docker1": "docker run -it --name react_web_app_nginx --rm -p 80:80 -v $(pwd)/public:/usr/share/nginx/html nginx:alpine",
+    "docker2": "docker run -it --name react_web_app_apache --rm -p 80:80 -v $(pwd)/public:/usr/local/apache2/htdocs/ httpd:latest",
+    "docker3": "docker run -it --name react_web_app_apache --rm -p 80:80 -v $(pwd)/public:/usr/local/apache2/htdocs/ httpd:alpine"
   },
   "engines": {
     "node": "^12.16.3"

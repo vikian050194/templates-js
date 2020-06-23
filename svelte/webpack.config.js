@@ -1,3 +1,4 @@
+const CopyPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
 
@@ -5,6 +6,7 @@ const mode = process.env.NODE_ENV || "development";
 const prod = mode === "production";
 
 module.exports = {
+	mode,
 	entry: {
 		bundle: ["./src/main.js"]
 	},
@@ -45,11 +47,16 @@ module.exports = {
 			}
 		]
 	},
-	mode,
 	plugins: [
 		new MiniCssExtractPlugin({
-			filename: "[name].css"
-		})
+			filename: "bundle.css"
+		}),
+        new CopyPlugin({
+            patterns: [
+                { from: "src/index.html" },
+                { from: "src/favicon.svg" }
+            ]
+        })
 	],
-	devtool: prod ? false : "source-map"
+	devtool: prod ? false : "inline-source-map"
 };

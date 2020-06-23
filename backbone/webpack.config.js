@@ -52,7 +52,7 @@ module.exports = {
             patterns:
                 [
                     { from: "src/index.html" },
-                    { from: "src/favicon.ico" }
+                    { from: "src/favicon.svg" }
                 ]
         }),
         new webpack.ProvidePlugin({
@@ -71,7 +71,7 @@ module.exports = {
         inline: true,
         proxy: {
             "/api": {
-                target: "http://localhost:80",
+                target: "http://localhost:8081",
                 pathRewrite: {"^/api" : ""}
             }
         }

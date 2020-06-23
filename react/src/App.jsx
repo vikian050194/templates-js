@@ -1,6 +1,6 @@
 import React from "react";
 
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import List from "./components/List";
 import NewItemForm from "./components/NewItemForm";
@@ -12,12 +12,12 @@ class App extends React.Component {
     render() {
         return (
             <Router>
-                <div>
+                <Switch>
                     <Route path="/" exact component={List} />
                     <Route path="/new" exact component={NewItemForm} />
                     <Route path="/:id(\d+)/show" exact component={List} />
                     <Route path="/:id(\d+)/edit" exact component={EditItemForm} />
-                </div>
+                </Switch>
             </Router >);
     }
 }

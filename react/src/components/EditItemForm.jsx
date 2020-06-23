@@ -7,7 +7,7 @@ class EditItemForm extends FormBase {
         this.onSubmit = this.onSubmit.bind(this);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.setState({ isLoading: true });
 
         fetch(`/api/list/${this.props.match.params.id}`)

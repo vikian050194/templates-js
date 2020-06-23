@@ -14,7 +14,7 @@ var App = Backbone.View.extend({
     start: function () {
         Backbone.history.start({ pushState: true });
 
-        console.log(`App is started at ${(new Date()).toLocaleString()}`);
+        console.info(`App is started at ${(new Date()).toLocaleString()}`);
     }
 });
 

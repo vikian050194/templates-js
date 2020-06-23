@@ -75,7 +75,7 @@ module.exports = {
         index: path.resolve(__dirname, "index.html"),
         contentBase: path.resolve(__dirname, "build"),
         publicPath: "/",
-        port: 8082,
+        port: 8080,
         watchContentBase: false,
         open: true,
         inline: true

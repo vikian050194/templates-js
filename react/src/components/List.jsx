@@ -15,7 +15,7 @@ class List extends React.Component {
         };
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.setState({ isLoading: true });
 
         fetch("/api/list/")
@@ -33,7 +33,6 @@ class List extends React.Component {
 
     render() {
         const createItem = (item) => {
-            console.info(item.id);
             return (<Item key={item.id} {...item} onDelete={this.onDelete} />);
         };
 

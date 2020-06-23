@@ -44,7 +44,7 @@ module.exports = {
         new CopyPlugin({
             patterns: [
                 { from: "src/index.html" },
-                { from: "src/favicon.ico" }
+                { from: "src/favicon.svg" }
             ]
         })
     ],
@@ -58,7 +58,7 @@ module.exports = {
         inline: true,
         proxy: {
             "/api": {
-                target: "http://localhost:80",
+                target: "http://localhost:8081",
                 pathRewrite: { "^/api": "" }
             }
         }

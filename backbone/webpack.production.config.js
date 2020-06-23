@@ -24,7 +24,7 @@ module.exports = merge(common, {
             patterns:
                 [
                     { from: "client/index.html" },
-                    { from: "client/favicon.ico" }
+                    { from: "client/favicon.svg" }
                 ]
         }),
         new webpack.ProvidePlugin({

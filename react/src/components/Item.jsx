@@ -16,7 +16,6 @@ class Item extends React.PureComponent {
     }
 
     render() {
-        console.info(`${this.props.id} is (re)rendered`);
         const showLink = () => {
             if (this.props.renderInShowMode) {
                 return null;
@@ -63,13 +62,11 @@ class Item extends React.PureComponent {
     }
 
     onDelete() {
-        console.info(`${this.props.id}: deleting`);
         fetch(`/api/list/${this.props.id}`, {
             method: "DELETE",
             headers: { "Content-Type": "application/json" }
         }).then(() => {
             this.props.onDelete(this.props.id);
-            console.info(`${this.props.id}: deleted`);
         });
     }
 }

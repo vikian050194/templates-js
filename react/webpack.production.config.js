@@ -23,7 +23,7 @@ module.exports = merge(common, {
         new CopyPlugin({
             patterns: [
                 { from: "src/index.html" },
-                { from: "src/favicon.ico" }
+                { from: "src/favicon.svg" }
             ]
         })
     ]
