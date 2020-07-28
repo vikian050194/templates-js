@@ -2,9 +2,13 @@ const webpack = require("webpack");
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
+const buildFolderName = "public";
+
+const files = ["./index.html", "./favicon.svg", "./css/bootstrap-theme.css", "./css/index.css", "./js/index.js"];
+
 module.exports = {
     mode: "development",
-    entry: ["./js/index.js", "bootstrap-loader/extractStyles",  "./build.js"],
+    entry: ["@babel/polyfill", "bootstrap-loader/extractStyles", ...files],
     devtool: "inline-source-map",
     module: {
         rules: [
@@ -29,7 +33,7 @@ module.exports = {
                 ]
             },
             {
-                test: /\.(woff|woff2|ttf|eot|svg)$/,
+                test: /\.(woff|woff2|ttf|eot)$/,
                 loader: "file-loader",
                 options: {
                     limit: 1024,
@@ -39,7 +43,7 @@ module.exports = {
                 }
             },
             {
-                test: /\.(jpg|jpeg|gif|png|ico)$/,
+                test: /\.(jpg|jpeg|gif|png|ico|svg)$/,
                 exclude: /node_modules/,
                 loader: "file-loader",
                 options: {
@@ -59,7 +63,7 @@ module.exports = {
     },
     output: {
         filename: "bundle.js",
-        path: path.resolve(__dirname, "build"),
+        path: path.resolve(__dirname, buildFolderName),
         publicPath: "/"
     },
     plugins: [
@@ -72,8 +76,8 @@ module.exports = {
         })
     ],
     devServer: {
-        index: path.resolve(__dirname, "index.html"),
-        contentBase: path.resolve(__dirname, "build"),
+        index: path.resolve(__dirname, buildFolderName, "index.html"),
+        contentBase: path.resolve(__dirname, buildFolderName),
         publicPath: "/",
         port: 8080,
         watchContentBase: false,
