@@ -4,7 +4,13 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const buildFolderName = "public";
 
-const files = ["./index.html", "./favicon.svg", "./css/bootstrap-theme.css", "./css/index.css", "./js/index.js"];
+const files = [
+    "./src/index.html",
+    "./src/favicon.svg",
+    "./src/css/bootstrap-theme.css",
+    "./src/css/index.css",
+    "./src/js/index.js"
+];
 
 module.exports = {
     mode: "development",
