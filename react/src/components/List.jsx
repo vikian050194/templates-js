@@ -38,6 +38,7 @@ class List extends React.Component {
 
         const filter = () => {
             let items = this.state.items;
+            // eslint-disable-next-line react/prop-types
             const targetId = this.props.match.params.id;
 
             if (targetId) {

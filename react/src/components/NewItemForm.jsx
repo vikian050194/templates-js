@@ -11,7 +11,7 @@ class NewItemForm extends FormBase {
         e.preventDefault();
         
         fetch("/api/list/", {
-            method: "PUT",
+            method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 description: this.state.description

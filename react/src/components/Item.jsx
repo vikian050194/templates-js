@@ -52,7 +52,7 @@ class Item extends React.PureComponent {
         const completed = !this.state.isCompleted;
         this.setState({ isCompleted: completed });
         fetch(`/api/list/${this.props.id}`, {
-            method: "POST",
+            method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 description: this.props.description,
@@ -75,7 +75,8 @@ Item.propTypes = {
     id: PropTypes.string.isRequired,
     isCompleted: PropTypes.bool.isRequired,
     description: PropTypes.string.isRequired,
-    onDelete: PropTypes.func.isRequired
+    onDelete: PropTypes.func.isRequired,
+    renderInShowMode: PropTypes.bool
 };
 
 export default Item;

@@ -23,7 +23,7 @@ class EditItemForm extends FormBase {
         e.preventDefault();
 
         fetch(`/api/list/${this.props.match.params.id}`, {
-            method: "POST",
+            method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 isCompleted: this.state.isCompleted,
