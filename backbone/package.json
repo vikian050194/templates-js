@@ -8,8 +8,7 @@
     "build": "webpack ",
     "release": "webpack --config webpack.production.config.js",
     "test": "mocha ./src/tests/**/*-tests.js  --require @babel/register",
-    "cover": "nyc --reporter=html npm run test",
-    "docker": "docker run -it --rm -p 80:80 -v $(pwd)/public:/usr/share/nginx/html nginx:alpine"
+    "cover": "nyc --reporter=html npm run test"
   },
   "engines": {
     "node": "^12.16.3"
