@@ -1,9 +1,7 @@
 {
-  "name": "svelte_web_app",
+  "name": "svelte-web-app",
   "version": "1.0.0",
-  "main": "index.js",
-  "author": "vikian050194",
-  "license": "MIT",
+  "private": true,
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
     "dev": "webpack-dev-server --content-base public"
