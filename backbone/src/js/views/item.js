@@ -11,12 +11,11 @@ var TodoView = Backbone.View.extend({
     initialize: function () {
         this.model.on("change", this.render, this);
         this.model.on("destroy", this.remove, this);
-
         this.model.on("hide", this.remove, this);
     },
 
     template: function (data) {
-        return `<label class="${data.status}"><input type=checkbox ${data.status === "complete" ? "checked" : ""}>${data.description}</label>
+        return `<label class="${data.isCompleted ? "complete" : ""}"><input type=checkbox ${data.isCompleted ? "checked" : ""}>${data.description}</label>
         <button class="show">Show</button>
         <button class="edit">Edit</button>
         <button class="delete">Delete</button>`;
@@ -34,11 +33,11 @@ var TodoView = Backbone.View.extend({
     },
 
     show : function(){
-        Backbone.history.navigate(`todos/${this.model.get("id")}`, {trigger: true})
+        Backbone.history.navigate(`${this.model.get("id")}/show`, {trigger: true});
     },
 
     edit : function(){
-        Backbone.history.navigate(`todos/${this.model.get("id")}/edit`, {trigger: true})
+        Backbone.history.navigate(`${this.model.get("id")}/edit`, {trigger: true});
     },
 
     delete: function(){

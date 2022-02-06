@@ -1,5 +1,5 @@
 {
-    "parser": "babel-eslint",
+    "parser": "@babel/eslint-parser",
     "env": {
         "browser": true,
         "es6": true,
@@ -14,7 +14,8 @@
             "jsx": true,
             "impliedStrict": true
         },
-        "sourceType": "module"
+        "sourceType": "module",
+        "requireConfigFile": false
     },
     "rules": {
         "quotes": [ "error", "double" ],

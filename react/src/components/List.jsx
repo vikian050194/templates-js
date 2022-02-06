@@ -1,7 +1,8 @@
 import React from "react";
-
+import PropTypes from "prop-types";
 import Item from "./Item";
 import NewItemButton from "./NewItemButton";
+import { withRouter } from "./withRouter";
 
 class List extends React.Component {
     constructor(props) {
@@ -16,7 +17,9 @@ class List extends React.Component {
     }
 
     componentDidMount() {
-        this.setState({ isLoading: true });
+        this.setState({
+            isLoading: true
+        });
 
         fetch("/api/list/")
             .then((response) => {
@@ -38,14 +41,12 @@ class List extends React.Component {
 
         const filter = () => {
             let items = this.state.items;
-            // eslint-disable-next-line react/prop-types
-            const targetId = this.props.match.params.id;
 
-            if (targetId) {
-                items = [items.find((i) => i.id === targetId)];
+            if (this.props.params.id) {
+                items = [items.find((i) => i.id === this.props.params.id)];
             }
 
-            const renderInShowMode = !isNaN(targetId);
+            const renderInShowMode = !isNaN(this.props.params.id);
 
             items.forEach((i) => {
                 i.renderInShowMode = renderInShowMode;
@@ -90,4 +91,8 @@ class List extends React.Component {
     }
 }
 
-export default List;
+List.propTypes = {
+    params: PropTypes.object.isRequired
+};
+
+export default withRouter(List);

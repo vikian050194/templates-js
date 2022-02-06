@@ -1,5 +1,5 @@
 {
-    "parser": "babel-eslint",
+    "parser": "@babel/eslint-parser",
     "env": {
         "browser": true,
         "commonjs": true,
@@ -12,10 +12,10 @@
     "parserOptions": {
         "ecmaVersion": 6,
         "ecmaFeatures": {
-            "experimentalObjectRestSpread": true,
             "impliedStrict": true
         },
-        "sourceType": "module"
+        "sourceType": "module",
+        "requireConfigFile": false
     },
     "rules": {
         "quotes": [ "error", "double" ],

@@ -21,9 +21,11 @@ var TodoForm = Backbone.View.extend({
         e.preventDefault();
         const newDescription = this.$("input").val();
         this.model.save({ description: newDescription }, {
+            // eslint-disable-next-line no-unused-vars
             success: function (model, res, opt) {
                 Backbone.history.navigate("", { trigger: true });
             },
+            // eslint-disable-next-line no-unused-vars
             error: function (model, xhr, opt) {
                 const errors = JSON.parse(xhr.responseText).errors;
                 alert(errors);

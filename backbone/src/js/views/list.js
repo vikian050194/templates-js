@@ -6,12 +6,12 @@ var TodoView = Backbone.View.extend({
     },
 
     template: function () {
-        return `<button class="new" >New</button>`;
+        return "<button class=\"new\" >New</button>";
     },
 
     initialize: function () {
-        this.collection.on('add', this.addOne, this);
-        this.collection.on('reset', this.addAll, this);
+        this.collection.on("add", this.addOne, this);
+        this.collection.on("reset", this.addAll, this);
     },
 
     addOne: function (todoItem) {
@@ -26,7 +26,7 @@ var TodoView = Backbone.View.extend({
     },
 
     new: function () {
-        Backbone.history.navigate("todos/new", { trigger: true });
+        Backbone.history.navigate("new", { trigger: true });
     }
 });
 

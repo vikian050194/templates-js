@@ -1,12 +1,12 @@
 const path = require("path");
-const CopyPlugin = require("copy-webpack-plugin");
+const ESLintPlugin = require("eslint-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-const buildFolderName = "public";
+const buildFolderName = "build";
 
 module.exports = {
     mode: "development",
-    entry: ["@babel/polyfill", "./src/index.jsx"],
+    entry: ["./src/index.jsx", "./src/index.html", "./src/favicon.svg"],
     devtool: "inline-source-map",
     module: {
         rules: [
@@ -29,6 +29,22 @@ module.exports = {
                     MiniCssExtractPlugin.loader,
                     "css-loader"
                 ]
+            },
+            {
+                test: /\.(jpg|jpeg|gif|png|ico|svg)$/,
+                loader: "file-loader",
+                options: {
+                    limit: 1024,
+                    name: "[name].[ext]"
+                }
+            },
+            {
+                test: /\.(html)$/,
+                loader: "file-loader",
+                options: {
+                    limit: 1024,
+                    name: "[name].[ext]"
+                }
             }
         ]
     },
@@ -41,21 +57,28 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: "bundle.css"
         }),
-        new CopyPlugin({
-            patterns: [
-                { from: "src/index.html" },
-                { from: "src/favicon.svg" }
-            ]
-        })
+        new ESLintPlugin({})
     ],
     devServer: {
-        index: path.resolve(__dirname, buildFolderName, "index.html"),
-        contentBase: path.resolve(__dirname, buildFolderName),
-        publicPath: "/",
+        host: "127.0.0.1",
         port: 8080,
-        watchContentBase: false,
-        open: true,
-        inline: true,
+        hot: false,
+        open: false,
+        historyApiFallback: true,
+        watchFiles: ["src/**/*"],
+        static: {
+            directory: path.join(__dirname, buildFolderName),
+            publicPath: "/",
+            watch: false
+        },
+        client: {
+            overlay: {
+                errors: true,
+                warnings: false
+            },
+            progress: true,
+            reconnect: true
+        },
         proxy: {
             "/api": {
                 target: "http://localhost:8081",

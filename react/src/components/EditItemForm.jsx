@@ -1,4 +1,7 @@
+import React from "react";
+import PropTypes from "prop-types";
 import FormBase from "./ItemFormBase";
+import { withRouter } from "./withRouter";
 
 class EditItemForm extends FormBase {
     constructor(props) {
@@ -10,7 +13,7 @@ class EditItemForm extends FormBase {
     componentDidMount() {
         this.setState({ isLoading: true });
 
-        fetch(`/api/list/${this.props.match.params.id}`)
+        fetch(`/api/list/${this.props.params.id}`)
             .then((response) => {
                 return response.json();
             })
@@ -22,7 +25,7 @@ class EditItemForm extends FormBase {
     onSubmit(e) {
         e.preventDefault();
 
-        fetch(`/api/list/${this.props.match.params.id}`, {
+        fetch(`/api/list/${this.props.params.id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -36,4 +39,8 @@ class EditItemForm extends FormBase {
     }
 }
 
-export default EditItemForm;
+EditItemForm.propTypes = {
+    params: PropTypes.object.isRequired
+};
+
+export default withRouter(EditItemForm);

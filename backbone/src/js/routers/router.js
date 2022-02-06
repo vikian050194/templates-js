@@ -7,14 +7,14 @@ import ToDoListCollection from "../collections/list";
 var Router = Backbone.Router.extend({
     initialize: function (options) {
         this.route("", "index");
-        this.route(/^todos\/(\d+)$/, "show");
-        this.route(/^todos\/(\d+)\/edit$/, "edit");
-        this.route("todos/new", "new");
+        this.route(/^(\d+)\/show$/, "show");
+        this.route(/^(\d+)\/edit$/, "edit");
+        this.route("new", "new");
 
         this.container = options.container;
 
         this.list = new ToDoListCollection();
-        let listView = new ToDoListView({
+        new ToDoListView({
             collection: this.list,
             el: this.container
         });

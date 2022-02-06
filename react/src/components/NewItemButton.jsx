@@ -1,8 +1,9 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
+import { withNavigation } from "./withNavigation";
 
 class New extends React.Component {
-    constructor(){
+    constructor() {
         super();
 
         this.onClick = this.onClick.bind(this);
@@ -13,9 +14,13 @@ class New extends React.Component {
 
     }
 
-    onClick(){
-        this.props.history.push("/new");
+    onClick() {
+        this.props.navigate("/new");
     }
 }
 
-export default withRouter(New);
+New.propTypes = {
+    navigate: PropTypes.func.isRequired
+};
+
+export default withNavigation(New);

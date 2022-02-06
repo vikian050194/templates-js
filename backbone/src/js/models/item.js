@@ -3,16 +3,12 @@ var TodoItem = Backbone.Model.extend({
 
     defaults: {
         description: "",
-        status: "incomplete"
+        isCompleted: false
     },
 
     toggleStatus: function () {
-        if (this.get("status") === "incomplete") {
-            this.set({ "status": "complete" });
-        } else {
-            this.set({ "status": "incomplete" });
-        }
-
+        const isCompletedForNow = this.get("isCompleted");
+        this.set({ isCompleted: !isCompletedForNow });
         this.save();
     }
 });

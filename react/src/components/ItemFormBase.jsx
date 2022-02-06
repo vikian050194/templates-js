@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 class Form extends React.Component {
     constructor(props) {
@@ -17,7 +17,7 @@ class Form extends React.Component {
     render() {
         const redirect = () => {
             if (this.state.isSubmitted) {
-                return <Redirect to="/" />;
+                return <Navigate to="/" />;
             }
         };
 
