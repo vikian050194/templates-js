@@ -12,19 +12,19 @@ export class ItemsList {
         this.store.dispatch(toggleItemAction(targetItemId));
     };
 
-    model = (builder) => {
+    model = (couturier) => {
         const state = this.store.getState();
 
-        builder.div({ class: "list" });
+        couturier.div({ class: "list" });
 
-        builder.h1().text(state.title).close();
+        couturier.h1().text(state.title).close();
 
         for (let item of state.items) {
             const props = { ...item, onClick: this.onItemClick };
             const cm = new Item(props);
-            cm.model(builder);
+            cm.model(couturier);
         }
 
-        builder.close();
+        couturier.close();
     };
 }
