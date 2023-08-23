@@ -1,18 +1,19 @@
 import {
     combineReducers,
     listReducer
-} from "../reducers";
+} from "reducers";
 import {
     applyMiddleware,
     logger,
     thunk
-} from "../middlewares";
-// import { compose } from "../utils";
-import { createAction, types } from "../actions";
+} from "middlewares";
+// import { compose } from "utils";
+import { createAction, types } from "actions";
 import { createStore } from "./createStore";
 
 const defaultState = {
-    title: "default list title"
+    title: "",
+    items: []
 };
 
 export const configureStore = (initialState = {}) => {

@@ -45,6 +45,18 @@ module.exports = {
             }
         ]
     },
+    resolve: {
+        alias: {
+            actions: path.resolve(__dirname, "src/js/actions"),
+            api: path.resolve(__dirname, "src/js/api"),
+            componente: path.resolve(__dirname, "src/js/componente"),
+            middlewares: path.resolve(__dirname, "src/js/middlewares"),
+            models: path.resolve(__dirname, "src/js/models"),
+            reducers: path.resolve(__dirname, "src/js/reducers"),
+            store: path.resolve(__dirname, "src/js/store"),
+            utils: path.resolve(__dirname, "src/js/utils")
+        }
+    },
     output: {
         filename: "bundle.js",
         path: path.resolve(__dirname, buildFolderName),

@@ -1,20 +1,21 @@
-const Item = ({
-    id,
-    description,
-    isCompleted,
-    onClick
-}) => {
+import { Builder } from "fandom";
 
-    const toggle = () => onClick(id);
+export class Item {
+    constructor() {
+        this.builder = new Builder();
+    }
 
-    const model = (builder) => {
+    describe = ({
+        id,
+        description,
+        isCompleted,
+        onClick
+    }) => {
+        const toggle = () => onClick(id);
         const className = isCompleted ? "complete" : "incomplete";
-        builder.div({ class: className, id }).text(description).onClick(toggle).close();
+        this.builder.div({ class: className, id }).text(description).onClick(toggle).close();
+        return this.builder.done();
     };
-
-    return {
-        model
-    };
-};
+}
 
 export default Item;

@@ -1,10 +1,9 @@
-/* eslint-disable no-unused-vars */
 import * as types from "../actionTypes";
 import { createAction } from "../createAction";
-import * as api from "../../api";
+import * as api from "api";
 import { fetchItemsAction } from "./fetchItems";
 
-const onSuccess = (arena) => createAction(types.UPDATE_ITEM_SUCCESS)(arena);
+const onSuccess = (data) => createAction(types.UPDATE_ITEM_SUCCESS)(data);
 const onFail = (error) => createAction(types.UPDATE_ITEM_ERROR)(error);
 
 export const updateItemAction = (item) => {

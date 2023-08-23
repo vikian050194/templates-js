@@ -1,34 +1,46 @@
-import { Couturier, replace, convert } from "fandom";
+import { Builder, replace, convert } from "fandom";
 import { ItemsList } from "./ItemsList";
-import { configureStore } from "../store";
+import { configureStore } from "store";
 
 const App = (rootSelector) => {
     const root = document.querySelector(rootSelector);
 
-    // var initialState = {
-    //     items: []
-    // };
-
-    const store = configureStore();
-
-    const list = new ItemsList(store);
-    const couturier = new Couturier();
-
-    const re = () => {
-        while (root.firstChild) {
-            root.removeChild(root.lastChild);
-        }
-
-        list.model(couturier);
-
-        const listModel = couturier.done();
-
-        const domElements = convert(listModel);
-
-        replace(root, domElements);
+    var initialState = {
+        title: "default title",
+        items: []
     };
 
-    store.subscribe(re);
+    const store = configureStore(initialState);
+
+    const components = {
+        items: new ItemsList(store.dispatch)
+    };
+
+    const builder = new Builder();
+
+    for (const key in components) {
+        builder.div({ id: key }).close();
+    }
+
+    const containers = builder.done();
+    const domElements = convert(containers);
+
+    replace(root, domElements);
+
+    const storeSnapshot = store.getState();
+
+    const onUpdate = (currentState) => {
+        for (const key in components) {
+            const substate = currentState[key];
+            const model = components[key].describe(substate);
+            const elements = convert(model);
+            replace(document.getElementById(key), elements);
+        }
+    };
+
+    store.subscribe(onUpdate);
+
+    onUpdate(storeSnapshot);
 };
 
 export default App;

@@ -1,5 +1,5 @@
-import { ItemModel } from "../models";
-import { types } from "../actions";
+import { ItemModel } from "models";
+import { types } from "actions";
 
 const defaultState = [];
 

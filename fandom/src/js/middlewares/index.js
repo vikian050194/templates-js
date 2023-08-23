@@ -1,7 +1,7 @@
 export { thunk } from "./thunk";
 export { logger } from "./logger";
 
-import { compose } from "../utils";
+import { compose } from "utils";
 
 export const applyMiddleware = (...middlewares) => {
     return (createStore) => (reducer, preloadedState, enhancer) => {
