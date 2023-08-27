@@ -2,9 +2,7 @@ import { Builder, replace, convert } from "fandom";
 import { ItemsList } from "./ItemsList";
 import { configureStore } from "store";
 
-const App = (rootSelector) => {
-    const root = document.querySelector(rootSelector);
-
+const App = ($root) => {
     var initialState = {
         title: "default title",
         items: []
@@ -25,7 +23,7 @@ const App = (rootSelector) => {
     const containers = builder.done();
     const domElements = convert(containers);
 
-    replace(root, domElements);
+    replace($root, domElements);
 
     const storeSnapshot = store.getState();
 

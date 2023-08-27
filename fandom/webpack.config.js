@@ -1,12 +1,15 @@
 const path = require("path");
-const ESLintPlugin = require("eslint-webpack-plugin");
+const ESLintWebpackPlugin = require("eslint-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const buildFolderName = "build";
 
 module.exports = {
     mode: "development",
-    entry: ["./src/js/index.js", "./src/css/index.css", "./src/index.html", "./src/favicon.svg"],
+    entry: ["./src/js/index.js", "./src/css/index.css"],
     devtool: "inline-source-map",
     module: {
         rules: [
@@ -58,15 +61,29 @@ module.exports = {
         }
     },
     output: {
-        filename: "bundle.js",
+        filename: "bundle.[contenthash].js",
         path: path.resolve(__dirname, buildFolderName),
         publicPath: "/"
     },
     plugins: [
-        new MiniCssExtractPlugin({
-            filename: "bundle.css"
+        new ESLintWebpackPlugin({}),
+        new CleanWebpackPlugin(),
+        new CopyWebpackPlugin({
+            patterns: [
+                "src/favicon.svg"
+            ]
         }),
-        new ESLintPlugin({})
+        new MiniCssExtractPlugin({
+            filename: "bundle.[contenthash].css"
+        }),
+        new HtmlWebpackPlugin({
+            filename: "index.html",
+            title: "Pure Web App",
+            favicon: "src/favicon.svg",
+            meta: {
+                viewport: "width=device-width, initial-scale=1.0, minimal-ui, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes"
+            }
+        })
     ],
     devServer: {
         host: "127.0.0.1",
