@@ -1,8 +1,20 @@
+const fs = require("fs");
 const path = require("path");
 const ESLintPlugin = require("eslint-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
+const isProxyInUse = false;
+
 const buildFolderName = "build";
+const mocksFolderName = "mocks";
+
+const readMock = (method, url) => {
+    const urlChunks = url.split("/").slice(2);
+    urlChunks[urlChunks.length - 1] = urlChunks[urlChunks.length - 1] + ".json";
+    const mockPath = path.resolve(...[__dirname, mocksFolderName, method.toLowerCase(), ...urlChunks]);
+    const data = fs.readFileSync(mockPath);
+    return JSON.parse(data);
+};
 
 module.exports = {
     mode: "development",
@@ -91,7 +103,25 @@ module.exports = {
         proxy: {
             "/api": {
                 target: "http://localhost:8080",
-                pathRewrite: { "^/api": "" }
+                pathRewrite: { "^/api": "" },
+                bypass: (req, res) => {
+                    if (isProxyInUse) {
+                        return null;
+                    }
+
+                    const mock = readMock(req.method, req.url);
+                    if (mock === null) {
+                        return null;
+                    } else {
+                        res.writeHead(mock.statusCode);
+                        if (mock.data) {
+                            res.end(JSON.stringify(mock.data));
+                        } else {
+                            res.end();
+                        }
+                        return true;
+                    }
+                }
             }
         }
     }

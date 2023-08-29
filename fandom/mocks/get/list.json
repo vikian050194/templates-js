@@ -1,0 +1,20 @@
+{
+    "statusCode": 200,
+    "data": [
+        {
+            "id": "1",
+            "isCompleted": true,
+            "description": "Foo"
+        },
+        {
+            "id": "2",
+            "isCompleted": false,
+            "description": "Bar"
+        },
+        {
+            "id": "3",
+            "isCompleted": false,
+            "description": "Buz"
+        }
+    ]
+}

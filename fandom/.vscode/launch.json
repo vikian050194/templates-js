@@ -25,6 +25,17 @@
             "env": {
                 "NODE_ENV": "testing"
             }
+        },
+        {
+            "name": "Debug webpack",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceRoot}/node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+            "stopOnEntry": false,
+            "args": [
+            ],
+            "cwd": "${workspaceRoot}",
+            "runtimeExecutable": null,
         }
     ]
 }
