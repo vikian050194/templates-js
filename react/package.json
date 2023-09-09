@@ -5,7 +5,7 @@
   "scripts": {
     "start": "webpack-dev-server",
     "dev": "webpack -w",
-    "build": "webpack ",
+    "build": "webpack",
     "release": "webpack --config webpack.production.config.js",
     "test": "mocha ./src/tests/**/*-tests.js  --require @babel/register",
     "cover": "nyc --reporter=html npm run test"
