@@ -4,7 +4,7 @@ const PWD = process.env.PWD;
 const http = require("http");
 const fs = require("fs");
 
-const dir = "build";
+const dir = "src";
 
 const getMimeType = (ext) => {
     const types = {
