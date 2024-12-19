@@ -3,7 +3,7 @@ const path = require("path");
 const ESLintPlugin = require("eslint-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-const isProxyInUse = false;
+const useProxy = true;
 
 const buildFolderName = "build";
 const mocksFolderName = "mocks";
@@ -105,7 +105,7 @@ module.exports = {
                 target: "http://localhost:8080",
                 pathRewrite: { "^/api": "" },
                 bypass: (req, res) => {
-                    if (isProxyInUse) {
+                    if (useProxy) {
                         return null;
                     }
 
