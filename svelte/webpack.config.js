@@ -12,10 +12,11 @@ module.exports = {
     devtool: "inline-source-map",
     resolve: {
         alias: {
-            svelte: path.resolve("node_modules", "svelte")
+            svelte: path.resolve("node_modules", "svelte/src/runtime")
         },
         extensions: [".mjs", ".js", ".svelte"],
-        mainFields: ["svelte", "browser", "module", "main"]
+        mainFields: ["svelte", "browser", "module", "main"],
+        conditionNames: ["svelte", "browser"]
     },
     output: {
         filename: "[name].js",
@@ -30,6 +31,7 @@ module.exports = {
                 use: {
                     loader: "svelte-loader",
                     options: {
+                        css: false,
                         emitCss: true,
                         hotReload: true
                     }
@@ -39,9 +41,9 @@ module.exports = {
                 test: /\.css$/,
                 use: [
                     /**
-					 * MiniCssExtractPlugin doesn"t support HMR.
-					 * For developing, use "style-loader" instead.
-					 * */
+                     * MiniCssExtractPlugin doesn"t support HMR.
+                     * For developing, use "style-loader" instead.
+                     * */
                     MiniCssExtractPlugin.loader,
                     "css-loader"
                 ]

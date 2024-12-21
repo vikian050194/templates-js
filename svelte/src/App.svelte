@@ -1,19 +1,14 @@
 <script>
-	let count = 0;
-
-	function handleClick() {
-		count += 1;
-	}
+    import { todoStore } from "./store.js";
 </script>
 
-<style>
-	button {
-		color: purple;
-		font-family: 'Comic Sans MS', cursive;
-		font-size: 2em;
-	}
-</style>
+<h1>Svelte Web App</h1>
 
-<button on:click={handleClick}>
-	Clicked {count} {count === 1 ? 'time' : 'times'}
-</button>
+{#each $todoStore as todo, index}
+    <p>
+        <input bind:value={todo} />
+        <button on:click={() => todoStore.removeItem(index)}>Delete</button>
+    </p>
+{/each}
+
+<button on:click={todoStore.addItem}>New</button>

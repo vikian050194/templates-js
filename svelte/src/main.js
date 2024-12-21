@@ -4,10 +4,8 @@ import "./global.css";
 const app = new App({
     target: document.body,
     props: {
-        name: "world"
+        name: "Svelte Web App"
     }
 });
-
-window.app = app;
 
 export default app;
