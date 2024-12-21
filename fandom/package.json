@@ -20,7 +20,7 @@
     "css-loader": "6.11.0",
     "eslint": "8.57.1",
     "eslint-webpack-plugin": "4.2.0",
-    "fandom": "0.10.0",
+    "fandom": "0.11.0",
     "file-loader": "6.2.0",
     "mini-css-extract-plugin": "2.9.2",
     "mocha": "10.8.2",

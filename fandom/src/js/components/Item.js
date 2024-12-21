@@ -12,8 +12,17 @@ export class Item {
         onClick
     }) => {
         const toggle = () => onClick(id);
+        this.builder.div();
+        const checkboxAttributes = {};
+
+        if (isCompleted) {
+            checkboxAttributes.checked = isCompleted;
+        }
+
+        this.builder.checkbox(checkboxAttributes, { change: toggle });
         const className = isCompleted ? "complete" : "incomplete";
-        this.builder.div({ class: className, id }).text(description).onClick(toggle).close();
+        this.builder.span({ class: className, id }).text(description).onClick(toggle).close();
+        this.builder.close();
         return this.builder.done();
     };
 }
