@@ -1,7 +1,9 @@
+import BaseView from "./base";
 import ItemView from "./item";
 import NewButton from "./new";
 
-var ListView = Backbone.View.extend({
+// TODO should I override "destroy" and call it for all child views?
+var ListView = BaseView.extend({
     initialize: function () {
         this.collection.on("add", this.addOne, this);
         this.collection.on("reset", this.addAll, this);
