@@ -3,7 +3,7 @@ import Router from "./routers/router";
 var App = Backbone.View.extend({
     initialize: function () {
         this.router = new Router({
-            container: $("body")
+            container: $("#root")
         });
     },
 

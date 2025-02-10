@@ -1,4 +1,4 @@
-var TodoView = Backbone.View.extend({
+var ItemView = Backbone.View.extend({
     tagName: "p",
 
     events: {
@@ -15,10 +15,7 @@ var TodoView = Backbone.View.extend({
     },
 
     template: function (data) {
-        return `<label class="${data.isCompleted ? "complete" : ""}"><input type=checkbox ${data.isCompleted ? "checked" : ""}>${data.description}</label>
-        <button class="show">Show</button>
-        <button class="edit">Edit</button>
-        <button class="delete">Delete</button>`;
+        return `<input type=checkbox ${data.isCompleted ? "checked" : ""}><span class="${data.isCompleted ? "complete" : ""}">${data.description}</span><button class="show">Show</button><button class="edit">Edit</button><button class="delete">Delete</button>`;
     },
 
     render: function () {
@@ -32,17 +29,17 @@ var TodoView = Backbone.View.extend({
         Backbone.history.loadUrl(Backbone.history.getFragment());
     },
 
-    show : function(){
-        Backbone.history.navigate(`${this.model.get("id")}/show`, {trigger: true});
+    show: function () {
+        Backbone.history.navigate(`${this.model.get("id")}/show`, { trigger: true });
     },
 
-    edit : function(){
-        Backbone.history.navigate(`${this.model.get("id")}/edit`, {trigger: true});
+    edit: function () {
+        Backbone.history.navigate(`${this.model.get("id")}/edit`, { trigger: true });
     },
 
-    delete: function(){
+    delete: function () {
         this.model.destroy();
     }
 });
 
-export default TodoView;
+export default ItemView;

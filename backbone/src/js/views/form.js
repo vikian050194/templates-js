@@ -1,18 +1,15 @@
-var TodoForm = Backbone.View.extend({
+var ItemForm = Backbone.View.extend({
     events: {
-        "click button": "save",
+        "click button.save": "save",
         "submit": "save"
     },
 
     template: function (data) {
-        return `<form>
-        <input placeholder="What do you have to do?" name="description" value="${data.description}" />
-        <button >Save</button>
-        </form>`;
+        return `<form><input placeholder="What do you have to do?" name="description" value="${data.description}" /><button >Save</button></form>`;
     },
 
     render: function () {
-        this.$el.html(this.template(this.model.attributes));
+        this.$el.append(this.template(this.model.attributes));
 
         return this;
     },
@@ -23,7 +20,7 @@ var TodoForm = Backbone.View.extend({
         this.model.save({ description: newDescription }, {
             // eslint-disable-next-line no-unused-vars
             success: function (model, res, opt) {
-                Backbone.history.navigate("", { trigger: true });
+                Backbone.history.navigate("/", { trigger: true });
             },
             // eslint-disable-next-line no-unused-vars
             error: function (model, xhr, opt) {
@@ -34,4 +31,4 @@ var TodoForm = Backbone.View.extend({
     }
 });
 
-export default TodoForm;
+export default ItemForm;

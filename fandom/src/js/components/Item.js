@@ -9,19 +9,23 @@ export class Item {
         id,
         description,
         isCompleted,
-        onClick
+        onToggle,
+        onDelete
     }) => {
-        const toggle = () => onClick(id);
-        this.builder.div();
+        const clickToggle = () => onToggle(id);
+        const clickDelete = () => onDelete(id);
+
+        this.builder.open("p");
         const checkboxAttributes = {};
 
         if (isCompleted) {
             checkboxAttributes.checked = isCompleted;
         }
 
-        this.builder.checkbox(checkboxAttributes, { change: toggle });
+        this.builder.checkbox(checkboxAttributes, { change: clickToggle });
         const className = isCompleted ? "complete" : "incomplete";
-        this.builder.span({ class: className, id }).text(description).onClick(toggle).close();
+        this.builder.span({ class: className, id }).text(description).close();
+        this.builder.button({ class: "delete" }, { click: clickDelete }).text("Delete").close();
         this.builder.close();
         return this.builder.done();
     };

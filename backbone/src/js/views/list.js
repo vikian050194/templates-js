@@ -1,33 +1,23 @@
-import ToDoItemView from "./item";
+import ItemView from "./item";
+import NewButton from "./new";
 
-var TodoView = Backbone.View.extend({
-    events: {
-        "click button.new": "new"
-    },
-
-    template: function () {
-        return "<button class=\"new\" >New</button>";
-    },
-
+var ListView = Backbone.View.extend({
     initialize: function () {
         this.collection.on("add", this.addOne, this);
         this.collection.on("reset", this.addAll, this);
     },
 
     addOne: function (todoItem) {
-        var todoView = new ToDoItemView({ model: todoItem });
-        this.$el.append(todoView.render().el);
+        var itemView = new ItemView({ model: todoItem });
+        this.$el.append(itemView.render().el);
     },
 
     addAll: function () {
         this.$el.empty();
-        this.$el.append(this.template());
         this.collection.forEach(this.addOne, this);
-    },
-
-    new: function () {
-        Backbone.history.navigate("new", { trigger: true });
+        const newButton = new NewButton();
+        this.$el.append(newButton.render().el);
     }
 });
 
-export default TodoView;
+export default ListView;

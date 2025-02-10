@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import LinkButton from "./LinkButton";
 
 class Item extends React.PureComponent {
     constructor(props) {
@@ -21,31 +21,16 @@ class Item extends React.PureComponent {
                 return null;
             }
 
-            return <Link to={this.props.id + "/show"} className="show">Show</Link>;
+            return <LinkButton text="Show" to={this.props.id + "/show"} className="show" />
         };
 
-        return <tr>
-            <td>
-                {this.props.id}
-            </td>
-            <td>
-                <input type="checkbox" onChange={this.onChange} defaultChecked={this.state.isCompleted} />
-            </td>
-            <td>
-                <label className={this.state.isCompleted ? "complete" : "incomplete"}>
-                    {this.props.description}
-                </label>
-            </td>
-            <td>
-                {showLink()}
-            </td>
-            <td>
-                <Link to={"../" + this.props.id + "/edit"} className="edit">Edit</Link>
-            </td>
-            <td>
-                <button onClick={this.onDelete} className="delete">Delete</button>
-            </td>
-        </tr>;
+        return <p>
+            <input type="checkbox" onChange={this.onChange} defaultChecked={this.state.isCompleted} />
+            <span className={this.state.isCompleted ? "complete" : "incomplete"}>{this.props.description}</span>
+            {showLink()}
+            <LinkButton text="Edit" to={this.props.id + "/edit"} className="edit" />
+            <button onClick={this.onDelete} className="delete">Delete</button>
+        </p>;
     }
 
     onChange() {

@@ -1,42 +1,61 @@
-import ToDoListView from "../views/list";
-import ToDoItemForm from "../views/item-form";
+import ListView from "../views/list";
+import ItemForm from "../views/form";
 
-import ToDoItemModel from "../models/item";
-import ToDoListCollection from "../collections/list";
+import ItemModel from "../models/item";
+import ListCollection from "../collections/list";
 
 var Router = Backbone.Router.extend({
     initialize: function (options) {
-        this.route("", "index");
+        this.route(/^.*/, "index");
         this.route(/^(\d+)\/show$/, "show");
         this.route(/^(\d+)\/edit$/, "edit");
-        this.route("new", "new");
+        this.route(/^new$/, "new");
 
         this.container = options.container;
 
-        this.list = new ToDoListCollection();
-        new ToDoListView({
-            collection: this.list,
-            el: this.container
-        });
+        this.list = new ListCollection();
     },
 
     index: function () {
+        // TODO prevent unnecessary GET /list call
+        if (this.view) {
+            this.view.remove();
+        }
+
+        this.view = new ListView({ collection: this.list });
+
+        this.container.append(this.view.render().el);
+
         this.list.fetch({ reset: true });
     },
 
     show: function (id) {
+        // TODO does it make sense to check view or something?
         this.list.focus(id);
     },
 
     new: function () {
-        const todoItem = new ToDoItemModel();
-        const todoForm = new ToDoItemForm({ model: todoItem });
-        this.container.append(todoForm.render().el);
+        // TODO check view before "destroy" call
+        if (this.view) {
+            this.view.remove();
+        }
+
+        const item = new ItemModel();
+        this.view = new ItemForm({ model: item });
+
+        this.container.append(this.view.render().el);
     },
 
     edit: function (id) {
-        const todoForm = new ToDoItemForm({ model: this.list.get(id), el: this.container });
-        todoForm.render();
+        // TODO check view before "destroy" call
+        if (this.view) {
+            this.view.remove();
+        }
+
+        const item = this.list.get(id);
+        this.view = new ItemForm({ model: item });
+
+        this.container.append(this.view.render().el);
     }
 });
 

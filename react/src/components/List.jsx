@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Item from "./Item";
-import NewItemButton from "./NewItemButton";
+import LinkButton from "./LinkButton";
 import { withRouter } from "./withRouter";
 
 class List extends React.Component {
@@ -59,29 +59,14 @@ class List extends React.Component {
             if (this.state.isLoading) {
                 return <h1>Loading...</h1>;
             } else {
-                return <table>
-                    <thead>
-                        <tr>
-                            <th>id</th>
-                            <th></th>
-                            <th>Description</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {filter()}
-                    </tbody>
-                </table>;
+                return filter();
             }
         };
 
         return (
             <div>
-                <NewItemButton />
-                <hr />
                 {renderItems()}
+                <LinkButton text="New" to="new" />
             </div>);
     }
 

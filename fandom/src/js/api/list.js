@@ -11,3 +11,7 @@ export const createItem = (item) => {
 export const updateItem = (item) => {
     return ajax.patch(`list/${item.id}`, item);
 };
+
+export const deleteItem = (item) => {
+    return ajax.delete(`list/${item.id}`);
+};

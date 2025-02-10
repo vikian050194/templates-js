@@ -1,7 +1,7 @@
 import { Builder } from "fandom";
 
 import Item from "./Item";
-import { fetchItemsAction, toggleItemAction } from "actions";
+import { fetchItemsAction, toggleItemAction, deleteItemAction } from "actions";
 
 export class ItemsList {
     constructor(dispatch) {
@@ -11,10 +11,11 @@ export class ItemsList {
     }
 
     describe(items) {
-        const onClick = (id) => this.dispatch(toggleItemAction(id));
+        const onToggle = (id) => this.dispatch(toggleItemAction(id));
+        const onDelete = (id) => this.dispatch(deleteItemAction(id));
 
         for (let item of items) {
-            const props = { ...item, onClick };
+            const props = { ...item, onToggle, onDelete };
             const i = new Item();
             const im = i.describe(props);
             this.builder.push(im);

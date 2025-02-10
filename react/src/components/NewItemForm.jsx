@@ -1,6 +1,6 @@
-import FormBase from "./ItemFormBase";
+import ItemFormBase from "./ItemFormBase";
 
-class NewItemForm extends FormBase {
+class NewItemForm extends ItemFormBase {
     constructor(props) {
         super(props);
 
@@ -9,11 +9,12 @@ class NewItemForm extends FormBase {
 
     onSubmit(e) {
         e.preventDefault();
-        
+
         fetch("/api/list/", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
+                isCompleted: false,
                 description: this.state.description
             })
         }).then(() => {

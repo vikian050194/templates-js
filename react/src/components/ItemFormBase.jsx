@@ -1,7 +1,7 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 
-class Form extends React.Component {
+class ItemFormBase extends React.Component {
     constructor(props) {
         super(props);
 
@@ -40,4 +40,4 @@ class Form extends React.Component {
     }
 }
 
-export default Form;
+export default ItemFormBase;

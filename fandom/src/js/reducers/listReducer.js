@@ -22,6 +22,10 @@ export const listReducer = (previousState = defaultState, action) => {
             const items = action.value.map(i => new ItemModel(i.id, i.description, i.isCompleted));
             return items;
         }
+        case types.DELETE_ITEM_SUCCESS: {
+            const items = previousState.filter(i => i.id !== action.value.id);
+            return items;
+        }
         default:
             return previousState;
     }

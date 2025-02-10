@@ -1,14 +1,19 @@
 import { Builder, replace, convert } from "fandom";
 import { ItemsList } from "./ItemsList";
 import { configureStore } from "store";
+import { throttle, LocalStorage } from "utils";
 
 const App = ($root) => {
     var initialState = {
-        title: "default title",
         items: []
     };
+    const persistedState = LocalStorage.get("state");
+    const store = configureStore({...initialState, ...persistedState});
 
-    const store = configureStore(initialState);
+    store.subscribe(throttle(() => {
+        const { items } = store.getState();
+        LocalStorage.set("state", { items });
+    }, 1000));
 
     const components = {
         items: new ItemsList(store.dispatch)
